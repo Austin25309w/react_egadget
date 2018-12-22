@@ -28,7 +28,7 @@ const removeAllFromCart = (cart, item) => {
 
 // SUBTOTAL FUNCTION
 const subTotal = (cart, item) => {
-    console.log(item.price, 'reducer')
+    console.log(item.price, 'reducer') 
     return item.price.reduce((a,b) => a+b)
 }
 
@@ -46,6 +46,8 @@ const cartReducer = ( state = [], action) => {
 
         case 'SUBTOTAL':
         return subTotal(state, action.payload)
+
+        
 
     default:
     return state;

@@ -2,6 +2,8 @@ import React from "react";
 import AddBtn from "./add_Button";
 import RemoveBtn from "./remove_Button";
 
+
+
 export default function ProductItem(props) {
   return (
     <div className="product_item">

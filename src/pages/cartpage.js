@@ -2,14 +2,10 @@ import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom'
 import ShoppingCart from '../features/shoppingCart'
 import { connect } from 'react-redux'
-
+import { Grid, Col, Row } from 'react-bootstrap';
 
 
 class Cartpage extends Component {
-componentDidMount(){
-    return (<div>Total price: (this.props.cart.price}</div>)
-}
-
 
 calculateCartTotal(){
     let total = 0;
@@ -35,17 +31,28 @@ getTotal(){
 
 
 render (){
-    return <div>
-    <h2>Cartpage</h2>
-    <ShoppingCart />
-    <ul>
     
-    <h2>Subtotal: ${this.calculateCartTotal()}</h2>
-    <h2>Tax: ${ this.getTax()} (zip code: 95050)</h2>
-    <h1>Total: ${this.getTotal()}</h1>
-    <li><NavLink to='/checkout'>CheckOut</NavLink></li>
+    return <Grid>
+            <h2 style={{textAlign:"left"}}>Cart</h2>
+        <Row className="show-grid">
+    <Col md={8} style={{paddingRight:'1px'}}>
+    <ShoppingCart />`
+    </Col>
+
+    <Col md={4} style={{paddingLeft:'1px'}}>
+    <div class='price'>
+    <ul style={{padding:"30px"}}>
+    
+    <h4>Subtotal: ${this.calculateCartTotal()}</h4>
+    <h4>Tax: ${ this.getTax()} </h4>
+    <h6>zip code: 95050</h6>
+    <h3>Total: ${this.getTotal()}</h3>
+    <li><NavLink to='/checkout'>Proceed to checkout</NavLink></li>
     </ul>
-</div>
+    </div>
+    </Col>
+    </Row>
+</Grid>
 }
 }
 

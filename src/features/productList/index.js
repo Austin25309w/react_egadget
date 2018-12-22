@@ -5,9 +5,22 @@ import { connect } from "react-redux";
 
 function Productlisting(props) {
 
+  // filter this in between proudct and search keywords.
+  let filteredProducts = props.products;
+  if(props.search.searchTerm){
+    filteredProducts = filteredProducts.filter(
+      (product) => {
+        console.log(product)
+        console.log(props)
+        return product.name.toLowerCase().indexOf(
+          props.search.searchTerm) !== -1;
+          }
+        )
+  }
   return (
+    // filteredContacts
     <div className="product_list">
-      {props.products.map(product => (
+      {filteredProducts.map(product => (
         <ProductItem
           key={product.id}
           product={product}
@@ -22,7 +35,8 @@ function Productlisting(props) {
 
 function mapStateToProps(state) {
   return {
-    cart: state.cart
+    cart: state.cart,
+    search: state.search
   };
 }
 
