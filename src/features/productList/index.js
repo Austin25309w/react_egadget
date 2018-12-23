@@ -10,8 +10,6 @@ function Productlisting(props) {
   if(props.search.searchTerm){
     filteredProducts = filteredProducts.filter(
       (product) => {
-        console.log(product)
-        console.log(props)
         return product.name.toLowerCase().indexOf(
           props.search.searchTerm) !== -1;
           }

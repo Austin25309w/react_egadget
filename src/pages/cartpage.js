@@ -6,6 +6,18 @@ import { Grid, Col, Row } from 'react-bootstrap';
 
 
 class Cartpage extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            search: ''
+        }
+    }
+
+componentDidMount(props) {
+    this.props.search.searchTerm = ''
+    console.log(this.props.search)
+
+}
 
 calculateCartTotal(){
     let total = 0;
@@ -31,7 +43,7 @@ getTotal(){
 
 
 render (){
-    
+    console.log(this.props.search)
     return <Grid>
             <h2 style={{textAlign:"left"}}>Cart</h2>
         <Row className="show-grid">
@@ -59,7 +71,8 @@ render (){
 
 function mapStateToProps(state){
     return {
-        cart: state.cart
+        cart: state.cart,
+        search: state.search
     }
 }
 

@@ -7,8 +7,8 @@ import { withRouter } from 'react-router'
 
 
 class Navigation extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       search: ''
     };
@@ -19,6 +19,14 @@ class Navigation extends Component {
     console.log(event.target.value)
     // added new line
     this.props.updateSearch(event.target.value);
+    
+  }
+  clearSearch =()=> {
+    this.setState({
+      search: ''
+    })
+    
+
   }
 
   render(){
@@ -32,12 +40,12 @@ class Navigation extends Component {
           </Navbar.Header>
       
           <div className="search-box">
-            <input className="search-txt" type="text" name="" value = {this.state.search} onChange = {this.updateSearch.bind(this)} placeholder="Type to search" />
+            <input  id ='se' className="search-txt" type="text" name="search" ref='search' value = {this.state.search} onChange = {this.updateSearch.bind(this)} placeholder="Type to search" />
             <a className="search-btn" href='#'>
               <i className="fas fa-search"></i>
             </a>
           </div>
-          <NavLink to='/cart'>Cart</NavLink>
+          <NavLink to='/cart' onClick ={this.clearSearch}>Cart</NavLink>
         </Navbar>
       </div>
 
