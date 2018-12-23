@@ -3,6 +3,7 @@ import Router from './Router'
 import { NavLink } from 'react-router-dom'
 import { Navbar, Nav, NavItem, FormGroup, FormControl, Button } from 'react-bootstrap'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router'
 
 
 class Navigation extends Component {
@@ -17,7 +18,7 @@ class Navigation extends Component {
     this.setState({search: event.target.value});
     console.log(event.target.value)
     // added new line
-    // this.props.updateSearch(event.target.value);
+    this.props.updateSearch(event.target.value);
   }
 
   render(){
@@ -51,7 +52,7 @@ class App extends Component {
     return (
       <div className="page-container">
       {/* added new action so that it can connect to store */}
-      <Navigation />
+      <Navigation updateSearch={this.props.updateSearch}/>
       {/*   updateSearch={this.props.updateSearch}*/}
         <Router />
         
@@ -60,23 +61,23 @@ class App extends Component {
   }
 }
 
-// function mapStateToProps(state){
-//   return {};
-// }
+function mapStateToProps(state){
+  return {};
+}
 
-// function mapDispatchToProps(dispatch){
-//   return {
-//     updateSearch: searchTerm => {
-//       dispatch ({
-//         type: 'UPDATE_SEARCH',
-//         payload: searchTerm
-//       })
-//     }
-//   }
-// }
+function mapDispatchToProps(dispatch){
+  return {
+    updateSearch: searchTerm => {
+      dispatch ({
+        type: 'UPDATE_SEARCH',
+        payload: searchTerm
+      })
+    }
+  }
+}
 
-// export default connect(
-//   mapStateToProps, 
-//   mapDispatchToProps
-//   )(App);
-export default App;
+export default withRouter(connect(
+  mapStateToProps, 
+  mapDispatchToProps
+  )(App));
+// export default App;
