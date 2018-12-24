@@ -11,7 +11,7 @@ function Productlisting(props) {
     filteredProducts = filteredProducts.filter(
       (product) => {
         return product.name.toLowerCase().indexOf(
-          props.search.searchTerm) !== -1;
+          props.search.searchTerm.toLowerCase()) !== -1;
           }
         )
   }

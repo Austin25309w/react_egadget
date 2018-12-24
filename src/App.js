@@ -45,7 +45,7 @@ class Navigation extends Component {
               <i className="fas fa-search"></i>
             </a>
           </div>
-          <NavLink to='/cart' onClick ={this.clearSearch}>Cart</NavLink>
+          <NavLink to='/cart' onClick ={this.clearSearch}>Cart({0})</NavLink>
         </Navbar>
       </div>
 
