@@ -38,6 +38,7 @@ componentDidUpdate(prevProps){
 
 
   render(){
+    const hasItem = this.state.numItem > 0
     return (
       <div style={{ backgroundColor: '#F8F8F8', borderRadius: '10px' }}>
         <Navbar>
@@ -53,7 +54,7 @@ componentDidUpdate(prevProps){
               <i className="fas fa-search"></i>
             </a>
           </div>
-          <NavLink to='/cart' onClick ={this.clearSearch}>Cart({this.state.numItem})</NavLink>
+          <NavLink to='/cart' onClick ={this.clearSearch}>Cart{ hasItem ? ' ('+this.state.numItem +')': null}</NavLink>
         </Navbar>
       </div>
 
