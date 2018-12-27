@@ -1,14 +1,16 @@
 
 
 const cartWithoutItem = (cart, item) => cart.filter(cartItem => cartItem.id !== item.id)
+// boolean
+const isItemInCart = (cart, item) => cart.filter(cartItem => cartItem.id === item.id)[0]
 
-const itemInCart = (cart, item) => cart.filter(cartItem => cartItem.id === item.id)[0]
+// const emptyCart = (cart, item) => cart
 
 
 // ADD TO CART FUNCTION 
 const addToCart = (cart, item) => {
     
-    const cartItem = itemInCart(cart, item)
+    const cartItem = isItemInCart(cart, item)
     return cartItem === undefined 
     ? [ ...cartWithoutItem(cart, item), { ...item, quantity: 1}]
     : [ ...cartWithoutItem(cart, item), { ...cartItem, quantity: cartItem.quantity +1}]
@@ -27,7 +29,7 @@ const removeAllFromCart = (cart, item) => {
 }
 
 // REMOVE EVERYTHING
-const removEverything = (cart, item) => {
+const removeEverything = (cart) => {
     return []
 }
 
@@ -54,7 +56,7 @@ const cartReducer = ( state = [], action) => {
         return subTotal(state, action.payload)
 
         case 'REMOVE_EVERYTHING':
-        return removEverything(state, action.payload)
+        return removeEverything(state)
         
 
     default:

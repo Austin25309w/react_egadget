@@ -9,6 +9,7 @@ const sort = (items) => {
 
 function Cart (props) {
     console.log(props.cart)
+    const hasProducts = props.cart.length > 0
     return <div class='wanted'>
     <table style={{padding:"15px"}}>
         <thead>
@@ -24,7 +25,7 @@ function Cart (props) {
         </thead>
         <tbody>
             {   
-                
+                hasProducts ? (
                 sort(props.cart).map( (item, index) => 
                 <tr key={index} style={{borderBottom: '1px solid lightGrey'}}>
                     <td>
@@ -64,6 +65,8 @@ function Cart (props) {
                     <hr/>
                 </tr>
                 )
+                ) :
+            <h5 style={{ color: 'red'}}><em>Please add some products to the cart</em></h5>
             }
             
             

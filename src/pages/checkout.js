@@ -1,9 +1,15 @@
-import React from "react"
+import React, { Component } from "react"
 import { Button, Form, Col, Row, FormControl} from "react-bootstrap"
 import { NavLink } from 'react-router-dom'
+import { connect } from 'react-redux'
 
-export default function CheckOut(props) {
-    const buttonStyle = { margin: '20px 0 0 0'}
+class CheckOut extends Component {
+    onSumbitClick = (e) => {
+        this.props.removeEverything()
+    }
+
+    render(){
+        const buttonStyle = { margin: '20px 0 0 0'}
     return ( 
         <div className="checkout-form">
             <Form horizontal>
@@ -37,10 +43,34 @@ export default function CheckOut(props) {
                     <FormControl type="number" placeholder="zipcode" />
                 </Col>
             <NavLink to='./done'>
-            <Button style={buttonStyle} bsSize='large' bsStyle="primary" type="submit" block>submit</Button>
+            <Button onClick ={this.onSumbitClick} style={buttonStyle} bsSize='large' bsStyle="primary" type="submit" block>submit</Button>
             </NavLink>
             
             </Form>
         </div>
     )
+    }
+    
 }
+
+function mapStateToProps(state){
+    return {}
+  }
+  
+  function mapDispatchToProps(dispatch){
+    return {
+      removeEverything: () => {
+        dispatch ({
+          type: 'REMOVE_EVERYTHING'
+        })
+      }
+    }
+  }
+  
+
+
+
+export default connect(
+    mapStateToProps, 
+    mapDispatchToProps
+    )(CheckOut)

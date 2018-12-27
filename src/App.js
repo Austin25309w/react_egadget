@@ -10,7 +10,8 @@ class Navigation extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      search: ''
+      search: '',
+      
     };
   }
 
@@ -25,9 +26,16 @@ class Navigation extends Component {
     this.setState({
       search: ''
     })
-    
-
   }
+componentDidUpdate(prevProps){
+  if(this.props.cart !== prevProps.cart){
+    const numItem = this.props.cart.reduce( (acc, current) => acc + current.quantity ,0); 
+    this.setState({
+      numItem
+    })
+  }
+}
+
 
   render(){
     return (
@@ -45,7 +53,7 @@ class Navigation extends Component {
               <i className="fas fa-search"></i>
             </a>
           </div>
-          <NavLink to='/cart' onClick ={this.clearSearch}>Cart({0})</NavLink>
+          <NavLink to='/cart' onClick ={this.clearSearch}>Cart({this.state.numItem})</NavLink>
         </Navbar>
       </div>
 
@@ -60,7 +68,10 @@ class App extends Component {
     return (
       <div className="page-container">
       {/* added new action so that it can connect to store */}
-      <Navigation updateSearch={this.props.updateSearch}/>
+      <Navigation 
+        updateSearch={this.props.updateSearch}
+        cart={this.props.cart}
+        />
       {/*   updateSearch={this.props.updateSearch}*/}
         <Router />
         
@@ -70,7 +81,9 @@ class App extends Component {
 }
 
 function mapStateToProps(state){
-  return {};
+  return {
+    cart: state.cart
+  };
 }
 
 function mapDispatchToProps(dispatch){
